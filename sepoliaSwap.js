@@ -4,30 +4,15 @@ const providerUrl = process.env.SEPOLIA_RPC_URL;
 const privateKey = process.env.SEPOLIA_PRIVATE_KEY;
 const provider = new ethers.providers.JsonRpcProvider(providerUrl);
 const wallet = new ethers.Wallet(privateKey, provider);
-/*const {
-  abi: SwapRouterABI,
-} = require("@uniswap/v3-periphery/artifacts/contracts/interfaces/ISwapRouter.sol/ISwapRouter.json");*/
 const SwapRouterABI = require("./abi/sepoliaRouterABI.json"); // Router ABI for sepolia
 const WETHAbi = require("./abi/wEthAbi.json");
-const WMaticAbi = require("./abi/wMaticAbi.json");
-
-//////Ethereum mainnet config--------------------------------------------------
-//const swapRouterAddress = "0xE592427A0AEce92De3Edee1F18E0157C05861564";
-//const WETHAddress = "";
-//const UsdcAddress = "";
-
-//////Polygon config-----------------------------------------------------------
-//const swapRouterAddress = "0xE592427A0AEce92De3Edee1F18E0157C05861564";
-//const UsdcAddress = "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359";
-//const WMatickAddress = "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270";
-//const WMaticContract = new ethers.Contract(WMatickAddress, WMaticAbi, wallet);
 
 //////Sepolia config-----------------------------------------------------------
 const swapRouterAddress = "0x3bFA4769FB09eefC5a80d6E87c3B9C650f7Ae48E";
 const WETHAddress = "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14";
 const UsdcAddress = "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238";
-const WETHContract = new ethers.Contract(WETHAddress, WETHAbi, wallet);
 
+const WETHContract = new ethers.Contract(WETHAddress, WETHAbi, wallet);
 const swapRouter = new ethers.Contract(
   swapRouterAddress,
   SwapRouterABI,
