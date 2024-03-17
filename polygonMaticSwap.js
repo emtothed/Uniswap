@@ -17,13 +17,13 @@ const swapRouter = new ethers.Contract(
   wallet
 );
 
-async function swapMaticForUSDC(wMaticAmount) {
+async function swapMaticForToken(wMaticAmount, tokenAddress) {
   const network = await provider.getNetwork();
   console.log(`Swaping on : ${network.name} chain`);
 
   const params = {
     tokenIn: wMatickAddress,
-    tokenOut: UsdcAddress,
+    tokenOut: tokenAddress,
     fee: 3000,
     recipient: wallet.address,
     deadline: Math.floor(Date.now() / 1000 + 60 * 10), // 100 minutes
@@ -43,7 +43,7 @@ async function swapMaticForUSDC(wMaticAmount) {
 }
 
 // Swap 0.01 WMatic for USDC
-swapMaticForUSDC(0.01).catch(console.error);
+swapMaticForToken(0.01, UsdcAddress).catch(console.error);
 
 // This function returns increases gas price by 10% to prevent the tx to get stuckon the network
 async function iGas() {
